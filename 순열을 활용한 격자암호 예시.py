@@ -10,11 +10,11 @@ def generate_key(n, r,r2, r3):
     키 생성 함수 n,r을 사용하여 P(P(n,r) + 1, r2) 생성 중복된 순열값 배제.
     """ 
     P = math.perm(n,r) + 1                                          # P(n, r) + 1 계산
-    result_r3 = random.choice(r3)                                   # r3 배열에서 랜덤 값 선택 q
+    select_r3 = random.choice(r3)                                   # r3 배열에서 랜덤 값 선택 q
     selected_r2 = random.choice(r2)                                 # r2 배열에서 랜덤 값 선택 r2
     result_p_X_r2 = math.perm(P, selected_r2)                       # P(P, r2) 계산
     digits = [int(d) for d in str(result_p_X_r2) if d != '0']       # 각 자리수에서 0 제거
-    S = [abs(d -result_r3) for d in digits]                         # | 각 자리수 -q| 
+    S = [abs(d -select_r3) for d in digits]                         # | 각 자리수 -q| 
     S = np.array(S)
     S = S.reshape(-1,1)                                             # S transposition
     dimension = len(S)                                 
